@@ -259,27 +259,22 @@ const cards = [
   .gc-hero-grid, .gc-intro-grid { grid-template-columns: 1fr; gap: 36px; }
   .card-grid { grid-template-columns: 1fr; }
 
-  /* Switch from 3D flip to opacity crossfade — eliminates layout jump */
-  .flip { height: auto; perspective: none; }
+  /* Keep 3D flip but use grid overlap to prevent height jump */
+  .flip { height: auto; perspective: 1000px; }
   .flip-inner {
     position: relative; inset: auto;
     display: grid;
-    transform: none !important;
-    transform-style: flat;
-    transition: none;
+    transform-style: preserve-3d;
+    transition: transform .7s cubic-bezier(.7,.05,.2,1);
   }
+  .flip.flipped .flip-inner { transform: rotateY(180deg); }
   .face {
-    grid-area: 1 / 1;         /* overlap both faces in the same grid cell */
+    grid-area: 1 / 1;   /* both faces overlap in same cell — card height = tallest face */
     position: relative; inset: auto;
-    backface-visibility: visible;
-    -webkit-backface-visibility: visible;
-    transform: none !important;
-    transition: opacity .25s ease;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
   }
-  .face.front  { opacity: 1; z-index: 1; }
-  .face.back   { opacity: 0; pointer-events: none; }
-  .flip.flipped .face.front { opacity: 0; pointer-events: none; }
-  .flip.flipped .face.back  { opacity: 1; pointer-events: auto; z-index: 2; }
+  .face.back { transform: rotateY(180deg); }
 }
 </style>
 
