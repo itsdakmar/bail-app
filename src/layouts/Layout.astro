@@ -1,0 +1,43 @@
+---
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  activePage: string;
+}
+
+const { title, activePage } = Astro.props;
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="A study of the constitutional framework of bail in Malaysia — bailable, non-bailable, and unbailable offences." />
+  <title>{title} — Constitutional Framework of Bail in Malaysia</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+</head>
+<body>
+  <div class="progress" aria-hidden="true"><i id="prog"></i></div>
+  <Nav activePage={activePage} />
+  <main>
+    <slot />
+  </main>
+  <Footer />
+
+  <script>
+    const bar = document.getElementById('prog') as HTMLElement;
+    function onScroll() {
+      const h = document.documentElement;
+      const max = h.scrollHeight - h.clientHeight;
+      const pct = max > 0 ? (h.scrollTop / max) * 100 : 0;
+      bar.style.width = pct + '%';
+    }
+    document.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  </script>
+</body>
+</html>

@@ -1,0 +1,289 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const cards = [
+  {
+    tag: "Article 5 · CPC s.387",
+    q: "If the law gives an accused a 100% right to bail, can the court still add hidden conditions to the release?",
+    aTitle: "No — they cannot add extra rules.",
+    aBody: "Where bail is a matter of right, the court cannot act as a strict gatekeeper. An automatic right must be given with absolutely no strings attached.",
+  },
+  {
+    tag: "Non-bailable · CPC s.388",
+    q: "For a serious, non-bailable offence — who actually decides whether bail is granted: the prosecutor or the judge?",
+    aTitle: "The prosecutor does not make the rules — the Judge does.",
+    aBody: "For serious crimes bail changes from an automatic right into a discretion. The judge weighs flight risk, interference with evidence, and the public interest before deciding.",
+  },
+  {
+    tag: "Article 8 · Gender",
+    q: "Is the special bail provision favouring women under s.388(1) of the CPC unconstitutional discrimination against men?",
+    aTitle: "Sorry — the door is closed for men.",
+    aBody: "The Federal Court has held that the provision is fair. Women are more vulnerable to hardships in lock-up and statistically far less likely to abscond, so the protection stays.",
+  },
+  {
+    tag: "Compassionate grounds",
+    q: "Can the courts ever grant bail on purely human, compassionate grounds in a non-bailable case?",
+    aTitle: "Yes — human compassion can win.",
+    aBody: "Even where the courts are strict (drug or security matters aside) there is room for kindness. The apex court has used its special powers to grant a mother bail to look after her child.",
+  },
+  {
+    tag: "Acquittal · CPC s.389",
+    q: "After acquittal, can the prosecutor keep an innocent person locked up just because an appeal is being filed?",
+    aTitle: "No way — the courts fought back against this trap.",
+    aBody: "Forcing an acquitted person to stay in custody simply because the prosecution is unhappy is abusive. Judges are independent and refuse to be a rubber stamp — if the court says you are innocent, you walk.",
+  },
+  {
+    tag: "Closing card",
+    q: "What is the single principle that binds every answer in this deck together?",
+    aTitle: "The presumption of innocence.",
+    aBody: "Liberty is the rule and detention is the exception. Bail is the legal mechanism that holds that principle in place, balancing the freedom of the accused against the integrity of trial.",
+  },
+];
+---
+<Layout title="Game Companion" activePage="game-companion">
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="wrap">
+      <div class="hero-tag">§ 05 &nbsp;·&nbsp; An interactive companion</div>
+      <div class="gc-hero-grid">
+        <div>
+          <h1>Game <span style="font-style:italic; color:var(--ink-soft);">Companion</span></h1>
+          <p class="hero-sub">An interactive way to learn about bail — a deck of six flashcard questions drawn from real Malaysian case law, with the court's answer on the reverse.</p>
+        </div>
+        <aside class="gc-meta" aria-label="Companion record">
+          <dl>
+            <dt>Cards</dt><dd>06</dd>
+            <dt>Format</dt><dd>Click to flip</dd>
+            <dt>Group</dt><dd>07</dd>
+          </dl>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- Intro -->
+  <section class="gc-intro">
+    <div class="wrap">
+      <div class="gc-intro-grid">
+        <div>
+          <div class="eyebrow">Foreword</div>
+          <div class="kicker">How to read</div>
+        </div>
+        <div class="measure">
+          <p>This section allows you to immerse in the topic of bail in a more entertaining, yet educational way, in the form of flashcards.</p>
+          <p>Listed here are six flashcard questions, followed by the answers — each card holds a question on its front and the court's answer, with a short principle of law, on its reverse.</p>
+          <div class="gc-instr">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="color:var(--gold-deep); flex:none;">
+              <path d="M3 12a9 9 0 0 1 15-6.7L21 8"/><path d="M21 3v5h-5"/>
+              <path d="M21 12a9 9 0 0 1-15 6.7L3 16"/><path d="M3 21v-5h5"/>
+            </svg>
+            <span>Click any card to flip it. Click again to return to the question.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Flashcards -->
+  <section class="cards">
+    <div class="wrap">
+      <div class="cards-head">
+        <div>
+          <div class="eyebrow">The Deck</div>
+          <h2>Six questions on bail</h2>
+        </div>
+        <div class="deck-controls">
+          <button class="deck-btn ghost" id="flip-all">Flip all</button>
+          <button class="deck-btn" id="reset-deck">Reset deck</button>
+        </div>
+      </div>
+
+      <div class="card-grid" id="deck">
+        {cards.map((c, i) => (
+          <article class="flip" role="button" aria-label={`Flashcard ${i + 1}`} tabindex="0" data-index={i}>
+            <div class="flip-inner">
+              <div class="face front">
+                <div class="top">
+                  <span class="q-num">{String(i + 1).padStart(2, '0')}</span>
+                  <span class="q-tag">{c.tag}</span>
+                </div>
+                <p class="q-body">{c.q}</p>
+                <div class="bottom">
+                  <span>Question</span>
+                  <span class="flip-hint">Flip
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M3 12a9 9 0 0 1 15-6.7L21 8"/><path d="M21 3v5h-5"/>
+                    </svg>
+                  </span>
+                </div>
+              </div>
+              <div class="face back">
+                <div class="top">
+                  <span class="q-num" style="color:var(--gold);">{String(i + 1).padStart(2, '0')}</span>
+                  <span class="q-tag" style="border-color:rgba(246,242,232,.2);">The Court's Answer</span>
+                </div>
+                <div class="answer-line"></div>
+                <h3 class="a-headline">{c.aTitle}</h3>
+                <p class="a-body">{c.aBody}</p>
+                <div class="bottom">
+                  <span>Principle</span>
+                  <span class="flip-hint">Back
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M21 12a9 9 0 0 1-15 6.7L3 16"/><path d="M3 21v-5h5"/>
+                    </svg>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- End note -->
+  <section class="endnote">
+    <div class="wrap">
+      <div class="eyebrow" style="justify-content:center;">End of deck</div>
+      <h2 style="margin-bottom:0;">By Group 7 &nbsp;<span style="color:var(--gold-deep);">·</span>&nbsp; Class B</h2>
+    </div>
+  </section>
+
+</Layout>
+
+<style>
+.gc-hero-grid {
+  display: grid; grid-template-columns: 1fr 280px; gap: 80px; align-items: end;
+}
+.gc-meta { font-family: var(--sans); font-size: 12px; letter-spacing: .18em; text-transform: uppercase; color: var(--muted); }
+.gc-meta dl { margin: 0; display: grid; grid-template-columns: auto 1fr; column-gap: 18px; row-gap: 10px; }
+.gc-meta dt { color: var(--muted); }
+.gc-meta dd { margin: 0; color: var(--ink); }
+
+.gc-intro { padding: 80px 0; border-bottom: 1px solid var(--rule); }
+.gc-intro-grid { display: grid; grid-template-columns: 220px 1fr; gap: 80px; }
+.gc-intro p { margin: 0 0 18px; font-size: 21px; line-height: 1.6; color: var(--ink-soft); }
+.gc-instr {
+  margin-top: 30px; padding: 20px 22px;
+  background: var(--surface); border: 1px solid var(--rule);
+  font-family: var(--sans); font-size: 13px; color: var(--muted);
+  display: flex; align-items: center; gap: 14px;
+}
+
+/* Cards */
+.cards { padding: 80px 0 40px; }
+.cards-head {
+  display: flex; align-items: end; justify-content: space-between;
+  margin-bottom: 40px; gap: 40px;
+}
+.cards-head h2 { margin: 0; }
+.deck-controls { display: flex; gap: 10px; }
+.deck-btn {
+  background: transparent; border: 1px solid var(--ink); color: var(--ink);
+  padding: 10px 16px; font-family: var(--sans); font-size: 12px;
+  letter-spacing: .16em; text-transform: uppercase; cursor: pointer;
+  transition: all .15s ease;
+}
+.deck-btn:hover { background: var(--ink); color: var(--bg); }
+.deck-btn.ghost { border-color: var(--rule); color: var(--muted); }
+.deck-btn.ghost:hover { background: var(--surface); color: var(--ink); border-color: var(--ink); }
+
+.card-grid {
+  display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px;
+}
+.flip {
+  position: relative; height: 340px;
+  perspective: 1400px; cursor: pointer;
+}
+.flip-inner {
+  position: absolute; inset: 0;
+  transition: transform .7s cubic-bezier(.7,.05,.2,1);
+  transform-style: preserve-3d;
+}
+.flip.flipped .flip-inner { transform: rotateY(180deg); }
+.face {
+  position: absolute; inset: 0;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  padding: 32px 32px 28px;
+  display: flex; flex-direction: column;
+  transition: border-color .2s ease, box-shadow .2s ease;
+}
+.flip:hover .face { border-color: var(--ink); }
+.face.back {
+  transform: rotateY(180deg);
+  background: var(--ink); color: var(--bg); border-color: var(--ink);
+}
+.face .top {
+  display: flex; align-items: flex-start; justify-content: space-between;
+  gap: 16px; margin-bottom: 18px;
+}
+.q-num {
+  font-family: var(--serif); font-size: 36px; line-height: 1; color: var(--gold-deep);
+  font-feature-settings: "lnum"; font-style: italic; font-weight: 400;
+}
+.q-tag {
+  font-family: var(--sans); font-size: 10px; letter-spacing: .22em;
+  text-transform: uppercase; color: var(--muted);
+  border: 1px solid var(--rule); padding: 5px 8px;
+}
+.q-body {
+  font-family: var(--serif); font-size: 23px; line-height: 1.35;
+  color: inherit; margin: 0; font-weight: 500;
+}
+.face .bottom {
+  margin-top: auto; padding-top: 20px;
+  display: flex; align-items: center; justify-content: space-between;
+  font-family: var(--sans); font-size: 11px; letter-spacing: .2em;
+  text-transform: uppercase; color: var(--muted);
+}
+.face.back .bottom { color: rgba(246,242,232,.6); }
+.flip-hint { display: flex; align-items: center; gap: 8px; }
+.answer-line { height: 1px; background: var(--gold); width: 28px; margin-bottom: 14px; }
+.a-headline {
+  font-family: var(--serif); font-size: 22px; line-height: 1.3;
+  font-style: italic; color: #fff; margin: 0 0 14px; font-weight: 500;
+}
+.a-body {
+  font-family: var(--serif); font-size: 16px; line-height: 1.55;
+  color: rgba(246,242,232,.85); margin: 0;
+}
+
+.endnote { padding: 120px 0 60px; text-align: center; }
+.endnote h2 { font-style: italic; max-width: 720px; margin: 0 auto 16px; }
+
+@media (max-width: 900px) {
+  .gc-hero-grid, .gc-intro-grid { grid-template-columns: 1fr; gap: 36px; }
+  .card-grid { grid-template-columns: 1fr; }
+  .flip { height: auto; perspective: none; }
+  .flip-inner { position: relative; inset: auto; }
+  .face { position: relative; inset: auto; }
+}
+</style>
+
+<script>
+const deck = document.getElementById('deck')!;
+
+deck.querySelectorAll<HTMLElement>('.flip').forEach(el => {
+  const toggle = () => el.classList.toggle('flipped');
+  el.addEventListener('click', toggle);
+  el.addEventListener('keydown', (e: KeyboardEvent) => {
+    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); }
+  });
+});
+
+document.getElementById('flip-all')!.addEventListener('click', () => {
+  const cards = deck.querySelectorAll<HTMLElement>('.flip');
+  const anyUnflipped = [...cards].some(c => !c.classList.contains('flipped'));
+  cards.forEach((c, i) => setTimeout(() => c.classList.toggle('flipped', anyUnflipped), i * 70));
+});
+
+document.getElementById('reset-deck')!.addEventListener('click', () => {
+  deck.querySelectorAll<HTMLElement>('.flip').forEach((c, i) =>
+    setTimeout(() => c.classList.remove('flipped'), i * 40)
+  );
+});
+</script>

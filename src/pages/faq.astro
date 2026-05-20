@@ -1,0 +1,229 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const faqs = [
+  {
+    q: "Do I get the bail money back at the end of the trial, even if he is found guilty and goes to jail?",
+    a: "Yes. Bail is not a fine, and it is not a bribe — it is a security deposit to guarantee the accused shows up to court. As long as he attends every single court date, you get 100% of your money back when the case concludes, whether he is acquitted or sent to prison."
+  },
+  {
+    q: "Do I have to pay in pure cash, or can I use my house grant, land title, or fixed deposit to secure the bail?",
+    a: "While the law allows the use of property titles or Fixed Deposit accounts, in reality courts rarely accept property titles because evaluating and liquidating them is a massive headache. Expect to pay via online cash transfer (e-Jamin). If you want to use an FD, you need the physical certificate, and the court will freeze it."
+  },
+  {
+    q: "What happens to me if I sign as the bailor and he runs away? Will I go to jail?",
+    a: "If he runs, the court will demand you pay the full bail amount (if it was a bond) or forfeit the cash you deposited. If you cannot pay the forfeited amount, the court can issue a warrant for your arrest and send you to jail for up to six months. Do not bail out someone you do not trust."
+  },
+  {
+    q: "I don't want to be the guarantor anymore because I don't trust him. How do I withdraw my name and get my money back?",
+    a: "You can apply to the court to discharge yourself as the bailor. The court will then issue an arrest warrant for the accused. Once he is physically back in police custody, you get your money back. He will stay in lockup until he finds a new bailor."
+  },
+  {
+    q: "If the charge is \"unbailable\" under the Criminal Procedure Code, does that mean absolutely zero chance of him getting out?",
+    a: "No — \"non-bailable\" simply means bail isn't automatic and the judge gets to decide, so your lawyer can still fight for his release. The only time there is absolutely zero chance of getting out is for strictly unbailable offences such as drug trafficking or terrorism."
+  },
+  {
+    q: "The magistrate just gave a 4-day remand order. Can I pay bail right now to take him home?",
+    a: "No. Remand (under Section 117 of the Criminal Procedure Code) is for police investigation. There is no such thing as \"bail\" during a remand period. You can only post bail after he is officially charged in court."
+  },
+  {
+    q: "If he plans to just plead guilty at the next date, do we still need to waste money posting bail today?",
+    a: "If you don't post bail today, he waits for his next court date inside a prison cell. If you want him sleeping in his own bed until that date, you have to pay the bail. You will get the money back after he pleads guilty and is sentenced."
+  },
+  {
+    q: "Can the police or the court cancel his bail if he gets into another fight or contacts the victim?",
+    a: "Absolutely. If he tampers with witnesses, commits another crime, or fails to report to the police station (where that was a condition), the prosecutor will apply to revoke the bail. He goes straight back to jail, and you risk losing your deposit."
+  },
+  {
+    q: "How exactly is the bail amount calculated? Is there a fixed menu for different crimes, or does the judge just make up a number?",
+    a: "There is no fixed menu. The judge decides the amount based on three main things: the severity of the crime, the risk of him running away, and his financial background. The goal is to set a number that hurts enough to make him show up, but isn't so absurdly high that it is impossible to pay."
+  },
+  {
+    q: "The judge took his passport. How do we get it back if there is a family emergency overseas?",
+    a: "You must file a formal application to the High Court for the temporary return of his passport. You will have to prove it is a genuine emergency or essential business, and the court will likely increase the bail amount as extra security while he is away."
+  }
+];
+---
+<Layout title="FAQ" activePage="faq">
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="wrap">
+      <div class="hero-tag">§ 03 &nbsp;·&nbsp; In plain language</div>
+      <div class="hero-grid">
+        <div>
+          <h1>Frequently<br/>Asked <span class="ital">Questions</span></h1>
+          <p class="hero-sub">Ten common questions about bail — for families, bailors, and anyone trying to navigate the system in real time.</p>
+        </div>
+        <aside class="crest" aria-label="FAQ record">
+          <dl>
+            <div class="crest-row"><dt>Volume</dt><dd>I</dd></div>
+            <div class="crest-row"><dt>Section</dt><dd>§ 03</dd></div>
+          </dl>
+          <div class="crest-divider"></div>
+          <div class="crest-num">10<small>Questions Answered</small></div>
+          <div class="crest-divider"></div>
+          <dl>
+            <div class="crest-row"><dt>Audience</dt><dd>Public</dd></div>
+            <div class="crest-row"><dt>Tone</dt><dd>Plain</dd></div>
+          </dl>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- TOC -->
+  <section class="faq-toc">
+    <div class="wrap">
+      <div class="faq-toc-grid">
+        <div>
+          <div class="eyebrow">Index</div>
+          <div class="kicker">Jump to a question</div>
+        </div>
+        <ol id="faq-toc-list">
+          {faqs.map((item, i) => (
+            <li><a data-faq={i + 1}>{item.q.length > 70 ? item.q.slice(0, 67) + '…' : item.q}</a></li>
+          ))}
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- Accordion -->
+  <section class="faq-list">
+    <div class="wrap">
+      {faqs.map((item, i) => (
+        <article class="faq-item" id={`faq-${i + 1}`}>
+          <button class="faq-q" type="button" aria-expanded="false">
+            <span class="num">{String(i + 1).padStart(2, '0')}</span>
+            <span class="q-text">{item.q}</span>
+            <span class="icon" aria-hidden="true">+</span>
+          </button>
+          <div class="faq-a">
+            <div>
+              <div class="faq-a-inner"><p>{item.a}</p></div>
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+
+</Layout>
+
+<style>
+.faq-toc {
+  padding: 60px 0 30px;
+  border-bottom: 1px solid var(--rule);
+}
+.faq-toc-grid { display: grid; grid-template-columns: 220px 1fr; gap: 80px; }
+.faq-toc ol {
+  list-style: none; padding: 0; margin: 0;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 0 40px;
+  counter-reset: tocnum;
+}
+.faq-toc li {
+  border-top: 1px solid var(--rule-soft);
+  padding: 14px 0;
+  display: flex; gap: 18px;
+  counter-increment: tocnum;
+}
+.faq-toc li:last-child { border-bottom: 1px solid var(--rule-soft); }
+.faq-toc li::before {
+  content: counter(tocnum, decimal-leading-zero);
+  font-family: var(--sans); font-size: 10px; letter-spacing: .18em;
+  color: var(--gold-deep); padding-top: 4px; min-width: 24px;
+}
+.faq-toc a {
+  font-family: var(--serif); font-size: 17px; line-height: 1.4;
+  color: var(--ink-soft); text-decoration: none; cursor: pointer;
+  transition: color .15s ease;
+}
+.faq-toc a:hover {
+  color: var(--ink);
+  text-decoration: underline;
+  text-decoration-color: var(--gold);
+  text-underline-offset: 4px;
+}
+
+.faq-list { padding: 60px 0 100px; }
+.faq-item { border-top: 1px solid var(--rule); }
+.faq-item:last-child { border-bottom: 1px solid var(--rule); }
+.faq-q {
+  width: 100%;
+  background: transparent;
+  border: 0;
+  text-align: left;
+  padding: 32px 0;
+  display: grid; grid-template-columns: 60px 1fr auto; gap: 32px; align-items: start;
+  cursor: pointer;
+  font-family: var(--serif);
+  color: var(--ink);
+  font-size: 23px;
+  line-height: 1.35;
+  letter-spacing: -.005em;
+  transition: background .15s ease;
+}
+.faq-q:hover { background: rgba(246,242,232,.6); }
+.faq-q .num {
+  font-family: var(--sans); font-size: 11px; letter-spacing: .2em;
+  color: var(--gold-deep); padding-top: 8px;
+}
+.faq-q .q-text { font-weight: 500; }
+.faq-q .icon {
+  width: 36px; height: 36px;
+  border: 1px solid var(--rule); border-radius: 50%;
+  display: grid; place-items: center;
+  font-family: var(--sans); font-size: 18px; color: var(--muted);
+  flex: none;
+  transition: transform .25s ease, background .15s ease, color .15s ease, border-color .15s ease;
+}
+.faq-item.open .faq-q .icon {
+  transform: rotate(45deg);
+  background: var(--ink); color: var(--bg); border-color: var(--ink);
+}
+.faq-a {
+  display: grid; grid-template-rows: 0fr;
+  transition: grid-template-rows .35s ease;
+}
+.faq-a > div { overflow: hidden; }
+.faq-item.open .faq-a { grid-template-rows: 1fr; }
+.faq-a-inner { padding: 0 0 36px 92px; max-width: 780px; }
+.faq-a p {
+  font-family: var(--serif);
+  font-size: 18px; line-height: 1.7;
+  color: var(--ink-soft); margin: 0;
+}
+
+@media (max-width: 900px) {
+  .faq-toc-grid { grid-template-columns: 1fr; gap: 36px; }
+  .faq-toc ol { grid-template-columns: 1fr; }
+  .faq-q { grid-template-columns: auto 1fr auto; gap: 18px; font-size: 18px; padding: 24px 0; }
+  .faq-a-inner { padding: 0 0 28px 0; }
+}
+</style>
+
+<script>
+document.querySelectorAll<HTMLButtonElement>('.faq-q').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const item = btn.closest<HTMLElement>('.faq-item')!;
+    const isOpen = item.classList.toggle('open');
+    btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  });
+});
+
+document.querySelectorAll<HTMLAnchorElement>('#faq-toc-list a[data-faq]').forEach(a => {
+  a.addEventListener('click', (e) => {
+    e.preventDefault();
+    const idx = a.getAttribute('data-faq');
+    const target = document.getElementById('faq-' + idx);
+    if (!target) return;
+    if (!target.classList.contains('open')) {
+      target.classList.add('open');
+      target.querySelector<HTMLButtonElement>('.faq-q')!.setAttribute('aria-expanded', 'true');
+    }
+    const y = target.getBoundingClientRect().top + window.scrollY - 80;
+    window.scrollTo({ top: y, behavior: 'smooth' });
+  });
+});
+</script>

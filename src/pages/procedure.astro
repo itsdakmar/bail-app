@@ -1,0 +1,178 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const steps = [
+  {
+    num: '01',
+    label: 'In the Courtroom',
+    title: 'Hearing the charges',
+    body: 'This picture shows the accused person standing in court to hear the charges against them. The judge is in charge of the busy room, while the police and the person paying bail watch from the audience seats. All of this happens right before they ask to be released on bail.',
+    img: '/images/procedure/step-1.png',
+    alt: 'The accused in court hearing the charges',
+  },
+  {
+    num: '02',
+    label: 'In the Hallway',
+    title: 'Counsel meets the family',
+    body: 'The lawyer talks to the family in the hallway, explaining the bail rules and exactly how much money is needed to get the accused out.',
+    img: '/images/procedure/step-2.png',
+    alt: 'Lawyer talking to family in the hallway',
+  },
+  {
+    num: '03',
+    label: 'At the Bail Room',
+    title: 'The paperwork begins',
+    body: 'The brother goes to the Bail Room and hands his ID and bank book to the clerk to start the official paperwork.',
+    img: '/images/procedure/step-3.png',
+    alt: 'At the bail counter handing over ID',
+  },
+  {
+    num: '04',
+    label: 'At the Cashier',
+    title: 'Payment via e-Jamin',
+    body: 'Still in the Bail Room, the brother goes to the cashier and pays the bail money online using his smartphone, through the e-Jamin system.',
+    img: '/images/procedure/step-4.png',
+    alt: 'Paying bail by smartphone via e-Jamin',
+  },
+  {
+    num: '05',
+    label: 'Outside the Courthouse',
+    title: 'The release',
+    body: 'The accused person is finally released. He walks out of the courthouse in his regular clothes and reunites with his waiting brother.',
+    img: '/images/procedure/step-5.png',
+    alt: 'The accused reunited with family outside the courthouse',
+  },
+];
+---
+<Layout title="Procedure" activePage="procedure">
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="wrap">
+      <div class="hero-tag">§ 04 &nbsp;·&nbsp; Illustration on Procedure of Bail</div>
+      <div class="hero-grid">
+        <div>
+          <h1>Illustration on<br/><span class="ital">Procedure</span> of Bail</h1>
+          <p class="hero-sub">From the moment the accused stands in court to hear the charges, through to the family reunion outside the courthouse — illustrated step by step.</p>
+        </div>
+        <aside class="crest" aria-label="Procedure record">
+          <dl>
+            <div class="crest-row"><dt>Volume</dt><dd>I</dd></div>
+            <div class="crest-row"><dt>Section</dt><dd>§ 04</dd></div>
+          </dl>
+          <div class="crest-divider"></div>
+          <div class="crest-num">05<small>Steps Illustrated</small></div>
+          <div class="crest-divider"></div>
+          <dl>
+            <div class="crest-row"><dt>Setting</dt><dd>Courthouse</dd></div>
+            <div class="crest-row"><dt>Format</dt><dd>Sequential</dd></div>
+          </dl>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  {steps.map((step, i) => (
+    <section class="proc-step">
+      <div class="wrap">
+        <div class={`proc-grid${i % 2 === 1 ? ' proc-grid--reverse' : ''}`}>
+          <div class="proc-text">
+            <div class="num-big">{step.num}</div>
+            <div class="step-label">{step.label}</div>
+            <h3 set:html={step.title} />
+            <p>{step.body}</p>
+          </div>
+          <div class="proc-img">
+            <img src={step.img} alt={step.alt} loading="lazy" />
+            <span class="proc-cap">Step {step.num}</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  ))}
+
+  <!-- Note -->
+  <section class="proc-note">
+    <div class="wrap">
+      <div class="proc-note-grid">
+        <div>
+          <div class="eyebrow">A note</div>
+          <div class="kicker">On the illustrations</div>
+        </div>
+        <div class="measure">
+          <p>Photographs depict a representative bail procedure at a Malaysian magistrate's court — from the dock to the <em>Kaunter Jaminan</em> (bail counter) and the e&#8209;Jamin payment terminal, ending at the courthouse exit.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</Layout>
+
+<style>
+.proc-step {
+  padding: 80px 0;
+  border-bottom: 1px solid var(--rule);
+}
+.proc-step:last-of-type { border-bottom: 0; }
+.proc-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+.proc-grid--reverse {
+  direction: rtl;
+}
+.proc-grid--reverse > * { direction: ltr; }
+
+.proc-text .num-big {
+  font-family: var(--serif);
+  font-size: 84px; line-height: 1;
+  color: var(--gold-deep);
+  font-style: italic; font-weight: 500;
+  font-feature-settings: "lnum";
+  margin-bottom: 10px;
+}
+.proc-text .step-label {
+  font-family: var(--sans); font-size: 11px;
+  letter-spacing: .24em; text-transform: uppercase;
+  color: var(--muted); margin-bottom: 18px;
+}
+.proc-text h3 { font-size: 32px; line-height: 1.2; margin: 0 0 22px; font-weight: 500; letter-spacing: -.005em; }
+.proc-text p { font-size: 19px; line-height: 1.65; color: var(--ink-soft); margin: 0; max-width: 480px; }
+
+.proc-img {
+  aspect-ratio: 5 / 3;
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  position: relative; overflow: hidden;
+}
+.proc-img img {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: cover; object-position: center;
+  display: block;
+}
+.proc-cap {
+  position: absolute; left: 18px; bottom: 14px;
+  font-family: var(--sans); font-size: 10px; letter-spacing: .22em;
+  text-transform: uppercase; color: var(--muted);
+  background: var(--bg); padding: 5px 9px; border: 1px solid var(--rule);
+}
+
+.proc-note {
+  padding: 80px 0;
+  border-top: 1px solid var(--rule);
+}
+.proc-note-grid {
+  display: grid; grid-template-columns: 220px 1fr; gap: 80px;
+}
+.proc-note p {
+  font-size: 20px; line-height: 1.65; color: var(--ink-soft); margin: 0;
+}
+
+@media (max-width: 900px) {
+  .proc-grid, .proc-note-grid { grid-template-columns: 1fr; gap: 40px; }
+  .proc-grid--reverse { direction: ltr; }
+  .proc-step { padding: 60px 0; }
+}
+</style>
