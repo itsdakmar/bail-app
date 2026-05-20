@@ -5,12 +5,12 @@ interface Props {
 const { activePage } = Astro.props;
 
 const links = [
-  { href: '/',                  label: 'Home',                          key: 'home' },
-  { href: '/legal-framework',   label: 'Legal Framework of Bail',       key: 'legal-framework' },
-  { href: '/legal-foundation',  label: 'Article: Jurisprudence of Bail',key: 'legal-foundation' },
-  { href: '/procedure',         label: 'Illustration on Procedure',     key: 'procedure' },
-  { href: '/game-companion',    label: 'Game Companion',                key: 'game-companion' },
-  { href: '/faq',               label: 'FAQ',                           key: 'faq' },
+  { href: '/',                  label: 'Home',                          short: 'Home',             key: 'home' },
+  { href: '/legal-framework',   label: 'Legal Framework of Bail',       short: 'Legal Framework',  key: 'legal-framework' },
+  { href: '/legal-foundation',  label: 'Article: Jurisprudence of Bail',short: 'Jurisprudence',    key: 'legal-foundation' },
+  { href: '/procedure',         label: 'Illustration on Procedure',     short: 'Procedure',        key: 'procedure' },
+  { href: '/game-companion',    label: 'Game Companion',                short: 'Game Companion',   key: 'game-companion' },
+  { href: '/faq',               label: 'FAQ',                           short: 'FAQ',              key: 'faq' },
 ];
 ---
 
@@ -33,7 +33,7 @@ const links = [
     <!-- Desktop links -->
     <div class="nav-links">
       {links.map(l => (
-        <a href={l.href} class={activePage === l.key ? 'active' : ''}>{l.label}</a>
+        <a href={l.href} class={activePage === l.key ? 'active' : ''}>{l.short}</a>
       ))}
     </div>
 
