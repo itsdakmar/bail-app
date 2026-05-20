@@ -9,7 +9,7 @@ import Layout from '../layouts/Layout.astro';
       <div class="hero-tag">Constitutional Law · Malaysia · Edition I</div>
       <div class="hero-grid">
         <div>
-          <h1>The Constitutional<br/>Framework of <span class="ital">Bail</span><br/>in Malaysia</h1>
+          <h1>Understanding <span class="ital">Bail</span>: Your Rights, The Rules, and The Exceptions</h1>
           <p class="hero-sub-label">Right of Bail: Presumption of Innocence</p>
           <p class="hero-sub">A study of the bailable, non-bailable and unbailable categories under Malaysian criminal justice — and the constitutional principles that govern them.</p>
         </div>
@@ -40,9 +40,9 @@ import Layout from '../layouts/Layout.astro';
           <div class="kicker">Bail</div>
         </div>
         <div class="measure">
-          <p>A bail is the temporary release of an accused person from custody while waiting for trial, subject to conditions set by the court.</p>
-          <p>It ensures that the accused attends the court at every stage of proceedings, while also protecting the principle that a person is innocent until proven guilty.</p>
-          <blockquote class="pullquote">"Bail is not a punishment. It is a measured pause — a balance struck between liberty and the integrity of trial."</blockquote>
+          <p>Bail is the temporary release of an accused person from custody while they wait for their trial, subject to conditions set by the court.</p>
+          <p>It ensures that the accused person attends their court dates, while protecting the fundamental constitutional principle that a person is innocent until proven guilty.</p>
+          <blockquote class="pullquote">"Bail is not merely a procedural mechanism for release. It is the vital constitutional bridge between the state's need to maintain public security and an individual's fundamental right to liberty."</blockquote>
         </div>
       </div>
     </div>
@@ -57,24 +57,30 @@ import Layout from '../layouts/Layout.astro';
           <h2 style="margin:0;">Jurisprudence of Bail</h2>
         </div>
         <div class="measure">
-          <p style="font-size:21px; color:var(--ink-soft); margin:0;">Bail allows an accused person to be temporarily released from custody while waiting for the trial, as it ensures the person attends the court while also protecting the principle of <em>a person is innocent until proven guilty</em>.</p>
+          <p style="font-size:21px; color:var(--ink-soft); margin:0 0 18px;">This platform translates the complex laws surrounding bail in Malaysia into clear, accessible knowledge for every citizen.</p>
+          <p style="font-size:18px; color:var(--muted); margin:0;">Navigating the Bailable, Non-Bailable, and Unbailable under Malaysian Criminal Justice.</p>
         </div>
       </div>
       <div class="scope-grid">
         <article class="scope-cell">
           <div class="num">I &nbsp;·&nbsp; Bailable</div>
-          <h3>Right, Not Privilege</h3>
-          <p>Offences for which the accused is entitled to be released on bail as a matter of right. The court cannot attach hidden conditions to a 100% right.</p>
+          <h3>The Three Tiers of Justice</h3>
+          <p>The Criminal Procedure Code divides offences into bailable, non-bailable, and unbailable categories — each carrying different levels of judicial discretion.</p>
         </article>
         <article class="scope-cell">
-          <div class="num">II &nbsp;·&nbsp; Non-Bailable</div>
-          <h3>The Judge's Scale</h3>
-          <p>For serious offences, bail becomes a discretion — the judge weighs flight risk, evidence tampering, and the public interest before granting it.</p>
+          <div class="num">II &nbsp;·&nbsp; Security</div>
+          <h3>State's Security vs. Human Rights</h3>
+          <p>Constitutional tensions between SOSMA's strict bail prohibitions and the fundamental right to liberty under Article 5 of the Federal Constitution.</p>
         </article>
         <article class="scope-cell">
-          <div class="num">III &nbsp;·&nbsp; Unbailable</div>
-          <h3>The Closed Door</h3>
-          <p>A narrow category of grave offences where bail is statutorily denied — yet courts retain a residual power to grant bail on compassionate grounds.</p>
+          <div class="num">III &nbsp;·&nbsp; Case Law</div>
+          <h3>Malaysian Case Law</h3>
+          <p>Court decisions navigating legal gaps — from compassionate bail for capital offences to the limits of executive power over acquitted persons.</p>
+        </article>
+        <article class="scope-cell">
+          <div class="num">IV &nbsp;·&nbsp; Procedure</div>
+          <h3>Practical Bail Process</h3>
+          <p>Step-by-step guidance on the bail procedure — from the courtroom to the Kaunter Jaminan and payment through the e-Jamin system.</p>
         </article>
       </div>
     </div>
@@ -175,7 +181,7 @@ import Layout from '../layouts/Layout.astro';
 /* Scope */
 .scope { padding: 100px 0; border-bottom: 1px solid var(--rule); }
 .scope-grid {
-  display: grid; grid-template-columns: repeat(3, 1fr);
+  display: grid; grid-template-columns: repeat(2, 1fr);
   gap: 1px; background: var(--rule); border: 1px solid var(--rule);
 }
 .scope-cell { background: var(--bg); padding: 36px 30px 32px; }
@@ -233,5 +239,8 @@ import Layout from '../layouts/Layout.astro';
   .def-grid, .members-head { grid-template-columns: 1fr; gap: 36px; }
   .scope-grid, .members-grid { grid-template-columns: 1fr; }
   .definition, .scope, .members { padding: 60px 0; }
+}
+@media (min-width: 901px) and (max-width: 1100px) {
+  .scope-grid { grid-template-columns: repeat(2, 1fr); }
 }
 </style>
