@@ -258,9 +258,28 @@ const cards = [
 @media (max-width: 900px) {
   .gc-hero-grid, .gc-intro-grid { grid-template-columns: 1fr; gap: 36px; }
   .card-grid { grid-template-columns: 1fr; }
+
+  /* Switch from 3D flip to opacity crossfade — eliminates layout jump */
   .flip { height: auto; perspective: none; }
-  .flip-inner { position: relative; inset: auto; }
-  .face { position: relative; inset: auto; }
+  .flip-inner {
+    position: relative; inset: auto;
+    display: grid;
+    transform: none !important;
+    transform-style: flat;
+    transition: none;
+  }
+  .face {
+    grid-area: 1 / 1;         /* overlap both faces in the same grid cell */
+    position: relative; inset: auto;
+    backface-visibility: visible;
+    -webkit-backface-visibility: visible;
+    transform: none !important;
+    transition: opacity .25s ease;
+  }
+  .face.front  { opacity: 1; z-index: 1; }
+  .face.back   { opacity: 0; pointer-events: none; }
+  .flip.flipped .face.front { opacity: 0; pointer-events: none; }
+  .flip.flipped .face.back  { opacity: 1; pointer-events: auto; z-index: 2; }
 }
 </style>
 
