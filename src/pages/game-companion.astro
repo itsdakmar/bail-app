@@ -142,6 +142,24 @@ const cards = [
     </div>
   </section>
 
+  <!-- Video -->
+  <section class="gc-video">
+    <div class="wrap">
+      <div class="gc-video-head">
+        <div class="eyebrow">Watch</div>
+      </div>
+      <div class="gc-video-wrap">
+        <video
+          src="/video.mp4"
+          controls
+          preload="metadata"
+          playsinline
+          class="gc-video-player"
+        ></video>
+      </div>
+    </div>
+  </section>
+
   <!-- End note -->
   <section class="endnote">
     <div class="wrap">
@@ -250,6 +268,19 @@ const cards = [
 .a-body {
   font-family: var(--serif); font-size: 16px; line-height: 1.55;
   color: rgba(246,242,232,.85); margin: 0;
+}
+
+.gc-video { padding: 80px 0; border-top: 1px solid var(--rule); }
+.gc-video-head {
+  display: flex; align-items: end; justify-content: space-between;
+  margin-bottom: 40px; gap: 40px;
+}
+.gc-video-head h2 { margin: 0; }
+.gc-video-wrap { display: flex; justify-content: center; }
+.gc-video-player {
+  width: 100%; max-width: 860px;
+  display: block;
+  border: 1px solid var(--rule);
 }
 
 .endnote { padding: 120px 0 60px; text-align: center; }
