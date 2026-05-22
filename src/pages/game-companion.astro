@@ -150,18 +150,13 @@ const cards = [
       </div>
       <div class="gc-video-wrap">
         <div class="video-container">
-          <div class="video-loader" id="video-loader">
-            <div class="loader-ring"></div>
-            <span class="loader-text">Loading</span>
-          </div>
-          <video
-            src="/video.mp4"
-            controls
-            preload="metadata"
-            playsinline
+          <iframe
+            src="https://player.vimeo.com/video/1194305065"
             class="gc-video-player"
-            id="gc-video"
-          ></video>
+            allow="autoplay; fullscreen; picture-in-picture"
+            allowfullscreen
+            title="Game Companion Video"
+          ></iframe>
         </div>
       </div>
     </div>
@@ -297,31 +292,6 @@ const cards = [
   border: 1px solid var(--rule);
 }
 
-.video-loader {
-  position: absolute; inset: 0;
-  z-index: 2;
-  background: var(--surface);
-  border: 1px solid var(--rule);
-  display: flex; flex-direction: column;
-  align-items: center; justify-content: center; gap: 22px;
-  transition: opacity .5s ease, visibility .5s ease;
-}
-.video-loader.ready { opacity: 0; visibility: hidden; }
-
-.loader-ring {
-  width: 38px; height: 38px;
-  border: 1.5px solid var(--rule);
-  border-top-color: var(--gold-deep);
-  border-radius: 50%;
-  animation: loader-spin 1s linear infinite;
-}
-@keyframes loader-spin { to { transform: rotate(360deg); } }
-
-.loader-text {
-  font-family: var(--sans);
-  font-size: 11px; letter-spacing: .24em; text-transform: uppercase;
-  color: var(--muted);
-}
 
 .endnote { padding: 120px 0 60px; text-align: center; }
 .endnote h2 { font-style: italic; max-width: 720px; margin: 0 auto 16px; }
@@ -372,9 +342,4 @@ document.getElementById('reset-deck')!.addEventListener('click', () => {
   );
 });
 
-const video = document.getElementById('gc-video') as HTMLVideoElement;
-const loader = document.getElementById('video-loader')!;
-const dismiss = () => loader.classList.add('ready');
-video.addEventListener('canplay', dismiss);
-video.addEventListener('error', dismiss);
 </script>
