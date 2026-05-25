@@ -2,6 +2,8 @@
 
 A static educational website on the law of bail in Malaysia, built for a constitutional law class project by Group 7, Class B.
 
+live site @ [https://bail-app.vecel.app](https://bail-app.vercel.app/)
+
 ## Pages
 
 | Route | Title | Description |
